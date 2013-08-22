@@ -9,13 +9,30 @@ alias contents='/bin/tar -tzf'
 alias mktd='tdir=`mktemp -d` && cd $tdir'
 alias proc='ps aux | grep'
 alias icanhazip='curl icanhazip.com --silent'
+alias play='mplayer -fs '
+alias cow='fortune | cowsay'
 
 # Automatically select whether to do a regular or reverse DNS lookup based on input
-function ds()
+ds()
 {
 	if [[ "$1" =~ ^([0-9]{1,3})[.]([0-9]{1,3})[.]([0-9]{1,3})[.]([0-9]{1,3})$ ]]; then
 		dig -x $1 +short
 	else
 		dig $1 +short
 	fi
+}
+
+# Move up a certain number of directories on the filesystem
+up(){
+  local d=""
+  limit=$1
+  for ((i=1 ; i <= limit ; i++))
+    do
+      d=$d/..
+    done
+  d=$(echo $d | sed 's/^\///')
+  if [ -z "$d" ]; then
+    d=..
+  fi
+  cd $d
 }
