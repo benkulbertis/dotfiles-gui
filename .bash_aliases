@@ -1,22 +1,26 @@
-alias iptables-save='sudo sh -c "iptables-save > /etc/iptables.rules"'
 alias update='sudo apt-get update && sudo apt-get upgrade'
-alias c="clear"
 alias top="htop"
 alias ls='ls -F --col'
-alias ll='ls -l'
-alias s='cd ..'
 alias packup='/bin/tar -czvf'
-alias diskspace='df -k -h'
+alias diskspace='df -h'
 alias largest='find . -type f -print0 | xargs -0 du -s | sort -n | tail -10 | cut -f2 | xargs -I{} du -sh {}'
 alias unpack='/bin/tar -xzvpf'
 alias contents='/bin/tar -tzf'
-# make a temp dir, then immediately cd into it
 alias mktd='tdir=`mktemp -d` && cd $tdir'
 alias proc='ps aux | grep'
 alias icanhazip='curl icanhazip.com --silent'
 
-alias fix-apt-gpg='sudo apt-key adv --keyserver keyserver.ubuntu.com --recv-keys'
+# Automatically select whether to do a regular or reverse DNS lookup based on input
+function ds()
+{
+	if [[ "$1" =~ ^([0-9]{1,3})[.]([0-9]{1,3})[.]([0-9]{1,3})[.]([0-9]{1,3})$ ]]; then
+		dig -x $1 +short
+	else
+		dig $1 +short
+	fi
+}
 
+# Extract just about any archive
 ex ()
 {
   if [ -f $1 ] ; then
