@@ -1,5 +1,5 @@
 alias update='sudo apt-get update && sudo apt-get upgrade'
-alias top="htop"
+alias top='htop'
 alias ls='ls -F --col'
 alias packup='/bin/tar -czvf'
 alias diskspace='df -h'
@@ -11,6 +11,7 @@ alias proc='ps aux | grep'
 alias icanhazip='curl icanhazip.com --silent'
 alias play='mplayer -fs '
 alias cow='fortune | cowsay'
+alias ex='unp' # I can never remember what unp is called
 
 # Automatically select whether to do a regular or reverse DNS lookup based on input
 ds()
